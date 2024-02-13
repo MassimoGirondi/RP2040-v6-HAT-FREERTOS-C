@@ -11,6 +11,11 @@ target_include_directories(ETHERNET_FILES INTERFACE
         ${WIZNET_DIR}/Ethernet
         ${WIZNET_DIR}/Ethernet/W6100
         )
+# At some point w6100.h became W6100.h in the code...
+# So we link it (although a patch to the code would be better!)
+    file(CREATE_LINK ${WIZNET_DIR}/Ethernet/W6100/w6100.h
+        ${WIZNET_DIR}/Ethernet/W6100/W6100.h
+        SYMBOLIC)
 
 target_link_libraries(ETHERNET_FILES PUBLIC
         W6100_FILES
